@@ -83,7 +83,8 @@ var TimingCallbacks = function(target, params) {
 				lineStart = self.currentEvent;
 		}
 		if (self.eventCallback && self.currentEvent > 0 && self.noteTimings[self.currentEvent - 1].type === 'event')
-			self.eventCallback(self.noteTimings[self.currentEvent - 1]);
+			var nextEvent = self.noteTimings[self.currentEvent] || null;
+			self.eventCallback(self.noteTimings[self.currentEvent - 1], nextEvent);
 		if (self.lineEndCallback)
 			self.lineEndCallback(self.lineEndTimings['e'+lineStart])
 
@@ -122,7 +123,8 @@ var TimingCallbacks = function(target, params) {
 			currentTime += 16; // Add a little slop because this function isn't called exactly.
 			while (self.noteTimings.length > self.currentEvent && self.noteTimings[self.currentEvent].milliseconds < currentTime) {
 				if (self.eventCallback && self.noteTimings[self.currentEvent].type === 'event')
-					self.eventCallback(self.noteTimings[self.currentEvent]);
+					var nextEvent = self.noteTimings[self.currentEvent + 1] || null;
+					self.eventCallback(self.noteTimings[self.currentEvent], nextEvent);
 				self.currentEvent++;
 				if (self.lineEndCallback && self.lineEndTimings['e'+self.currentEvent])
 					self.lineEndCallback(self.lineEndTimings['e'+self.currentEvent]);
