@@ -385,7 +385,7 @@ var midi = {};
 						if (index !== midiControl.abcjsLastIndex) {
 							var last = midiControl.abcjsLastIndex >= 0 ? midiControl.abcjsTune.noteTimings[midiControl.abcjsLastIndex] : null;
 							midiControl.abcjsAnimate(last,
-								midiControl.abcjsTune.noteTimings[index], midiControl.abcjsContext, midiControl.abcjsTune.noteTimings[index]);
+								midiControl.abcjsTune.noteTimings[index], midiControl.abcjsContext, midiControl.abcjsTune.noteTimings[index + 1]);
 							midiControl.abcjsLastIndex = index;
 						}
 					}
