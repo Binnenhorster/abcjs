@@ -385,7 +385,7 @@ var midi = {};
 						if (index !== midiControl.abcjsLastIndex) {
 							var last = midiControl.abcjsLastIndex >= 0 ? midiControl.abcjsTune.noteTimings[midiControl.abcjsLastIndex] : null;
 							midiControl.abcjsAnimate(last,
-								midiControl.abcjsTune.noteTimings[index], midiControl.abcjsContext, midiControl.abcjsTune.noteTimings[index + 1]);
+								midiControl.abcjsTune.noteTimings[index], midiControl.abcjsContext, midiControl.abcjsTune.noteTimings[index + 1], midiControl.abcjsTune.noteTimings, index);
 							midiControl.abcjsLastIndex = index;
 						}
 					}
@@ -409,7 +409,7 @@ var midi = {};
 			setTimeout(function() {
 				doReset(midiControl, finishedResetting);
 				if (midiControl && midiControl.abcjsAnimate)
-					midiControl.abcjsAnimate(midiControl.abcjsTune.noteTimings[midiControl.abcjsLastIndex], null, midiControl.abcjsContext, null);
+					midiControl.abcjsAnimate(midiControl.abcjsTune.noteTimings[midiControl.abcjsLastIndex], null, midiControl.abcjsContext, null, midiControl.abcjsTune.noteTimings, midiControl.abcjsLastIndex);
 			}, 1);
 		}
 	}
